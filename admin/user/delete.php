@@ -1,16 +1,11 @@
 <?php
-
-require_once "../../core1/boot.php";
-
-if ( $_SERVER[ 'REQUEST_METHOD' ] === "POST" ){
-    // if( !empty($_POST[ 'action']) ){
-   
+require_once '../../core/boot.php' ;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
-if ($_SERVER[ 'REQUEST_METHOD' ] === "GET") {
-
-    $user_id = $_GET['id'];
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $user_id = $_GET['user_id'];
     delete_user($user_id);
-  
-    header("location: index.php");
+
+    header('Location: index.php');
 }
