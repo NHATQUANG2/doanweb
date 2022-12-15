@@ -3,30 +3,20 @@
 body {
     margin: 0;
     padding: 0;
-
-
 }
-
-
 i {
     font-size: 15px;
     padding: 20px 5px;
-
 }
-
 .img {
     position: relative;
 }
-
 .text {
     margin: 10px 30px;
     bottom: 200px;
     position: absolute;
     font-family: 'Playfair Display', serif;
-
-
 }
-
 .w-100 {
     height: 600px;
     object-fit: cover;

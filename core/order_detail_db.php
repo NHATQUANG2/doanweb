@@ -5,21 +5,23 @@ require_once 'mysql.php';
 $pdo = get_pdo();
 
 //Insert order
-function insert_order_detail($products_id, $order_id, $quantity){
-    $sql = "INSERT INTO ORDER_DETAILS(ID, PRODUCTS_ID, ORDER_ID, QUANTITY) VALUES(NULL, :products_id, :order_id, :quantity)";
+function insert_order_detail($products_id, $order_id, $quantity, $price, $total){
+    $sql = "INSERT INTO ORDER_DETAIL(ID, PRODUCTS_ID, ORDER_ID, QUANTITY,PRICE,TOTAL) VALUES(NULL, :products_id, :order_id, :quantity,:price,:total)";
     global $pdo;
     $stmt = $pdo->prepare($sql);
    
     $stmt->bindParam(':products_id', $products_id);
     $stmt->bindParam(':order_id', $order_id);
     $stmt->bindParam(':quantity', $quantity);
+    $stmt->bindParam(':price', $price);
+    $stmt->bindParam(':total', $total);
 
     $stmt->execute();
 }
 
 //update order
 function update_order_detail($products_id, $order_id, $quantity){
-    $sql = "UPDATE ORDER_DETAILS SET PRODUCTS_ID=:products_id, ORDER_ID=:order_id, QUANTITY=:quantity WHERE ID=:id";
+    $sql = "UPDATE ORDER_DETAIL SET PRODUCTS_ID=:products_id, ORDER_ID=:order_id, QUANTITY=:quantity WHERE ID=:id";
     global $pdo;
     $stmt = $pdo->prepare($sql);
    
@@ -32,7 +34,7 @@ function update_order_detail($products_id, $order_id, $quantity){
 
 //delete order
 function delete_order_detail($id){
-    $sql = "DELETE FROM ORDER_DETAILS WHERE ID=:id";
+    $sql = "DELETE FROM ORDER_DETAIL WHERE ID=:id";
     global $pdo;
     $stmt = $pdo->prepare($sql);
     
@@ -43,7 +45,7 @@ function delete_order_detail($id){
 
 //Select data
 function get_order_detail_list(){
-    $sql = "SELECT * FROM ORDER_DETAILS";
+    $sql = "SELECT * FROM ORDER_DETAIL";
     global $pdo;
     $stmt = $pdo->prepare($sql);
     
@@ -69,12 +71,12 @@ function get_order_detail_list(){
     return $order_list;
 }
 
-function find_order_detail($id){
-    $sql = "SELECT * FROM ORDER_DETAILS WHERE ID=:id";
+function find_order_detail($order_id ){
+    $sql = "SELECT * FROM ORDER_DETAIL WHERE ORDER_ID =:order_id";
     global $pdo;
     $stmt = $pdo->prepare($sql);
     
-    $stmt->bindParam(':id', $id);
+    $stmt->bindParam(':order_id', $order_id);
     $stmt->execute();
     $stmt->setFetchMode(PDO::FETCH_ASSOC); 
      
@@ -88,6 +90,8 @@ function find_order_detail($id){
             'products_id' => $row['products_id'],
             'order_id' => $row['order_id'],
             'quantity' => $row['quantity'],
+            'price' => $row['price'],
+            'total' => $row['total'],
         );
     }
 

@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             $order = array(
                 'code' => string_radom(10),
                 'status' => 'pending',
-                'user_id' => 1
+                'user_id' => $_SESSION['user']['id']
             );
         
             insert_order(
@@ -31,13 +31,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
                 $order_detail = array(
                     'product_id' => $ods['product_id'],
                     'order_id' => $find_order['id'],
-                    'quantity' => $ods['quantity']
+                    'quantity' => $ods['quantity'],
+                    'price' => $ods['price'],
+                    'total' => total_cart_item($ods['price'],$ods['quantity'])
                 );
         
                 insert_order_detail(
                     $order_detail['product_id'],
                     $order_detail['order_id'],
                     $order_detail['quantity'],
+                    $order_detail['price'],
+                    $order_detail['total'],
                 );
             }
         

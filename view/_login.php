@@ -31,6 +31,7 @@
                             <i style="color: red;"><?php if (isset($_SESSION['flash_message'])) echo  $_SESSION['flash_message'];
                                     unset($_SESSION['flash_message']); ?></i>
                                 <div class="group-input">
+                                    <input type="hidden" name="id">
                                     <label class="group-input-text" for="username">Username or email address *</label>
                                     <input type="text" name="email"  placeholder="User name" id="name" required>
                                 </div>

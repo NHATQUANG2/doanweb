@@ -1,5 +1,5 @@
 <?php
-define('DB_NAME', 'doan');
+define('DB_NAME', 'clother');
 define('DB_USER', 'root');
 define('DB_USER_PASS', '');
 
