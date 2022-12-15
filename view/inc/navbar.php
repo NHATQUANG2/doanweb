@@ -25,10 +25,14 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Blog</a>
+          <a class="nav-link" href="contacts.php">Contacts</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="contact.php">Contacts</a>
+        <?php if (isset($_SESSION['user'])) { ?>
+                <a class="nav-link" href="<?php echo BASE_URL . '/admin/products'; ?>" class="text-gray-200 hover:text-white transition">Admin</a>
+               
+              <?php } ?>
+          
         </li>
       </ul>
       <form class="d-flex" action="search.php" method="get">

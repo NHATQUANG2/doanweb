@@ -3,14 +3,17 @@ require_once 'core/boot.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $isLoginSuccess = true;
+   
     if($_POST['email'] && $_POST['password']){
-        $user = login($_POST['email'], $_POST['password']);
-
+        $user = login($_POST['email'], $_POST['password'],$_POST['id']);
+        
         if($user == false){
             $_SESSION['flash_message'] = 'Login failed';
             $isLoginSuccess = false;
         }else{
             $_SESSION['user'] = $user;
+            
+            
         }
     }
 
